@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const passport = require('passport');
 const session = require('express-session');
 const flash = require('connect-flash');
+const logger = require('morgan');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,6 +14,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(express.static('public'));
 app.use(flash());
+app.use(logger('dev'));
 
 // Passport
 app.use(
