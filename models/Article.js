@@ -16,7 +16,11 @@ const ArticleSchema = new Schema({
     default: 'images/pcgamer-logo.png',
   },
   summary: {
-    type: String
+    type: String,
+  },
+  source: {
+    type: String,
+    required: true,
   },
   comments: [{
     type: Schema.Types.ObjectId,

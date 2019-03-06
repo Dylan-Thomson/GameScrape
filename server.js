@@ -58,6 +58,7 @@ app.get('/scrape/pcgamer', (req, res) => {
       result.link = $(element).find('a').attr('href');
       result.image = $(element).find('img').attr('data-src');
       result.summary = $(element).find('.synopsis').text();
+      result.source = "pcgamer";
       console.log(result);
     });
   });
