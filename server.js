@@ -42,6 +42,11 @@ const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/mongoHeadlin
 
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
+// ROUTES WILL BE MOVED
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
 
 app.listen(PORT, () => {
   console.log(
