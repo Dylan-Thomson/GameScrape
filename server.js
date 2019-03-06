@@ -8,6 +8,7 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const cheerio = require('cheerio');
 const axios = require('axios');
+const db = require('./models');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -58,10 +59,16 @@ app.get('/scrape/pcgamer', (req, res) => {
       result.link = $(element).find('a').attr('href');
       result.image = $(element).find('img').attr('data-src');
       result.summary = $(element).find('.synopsis').text();
-      result.source = "pcgamer";
+      result.source = 'pcgamer';
       console.log(result);
+      db.Article.create(result).then((dbArticle) => {
+        console.log(dbArticle);
+      }).catch((err) => {
+        console.log(err);
+      });
     });
   });
+  res.redirect('/');
 });
 
 
