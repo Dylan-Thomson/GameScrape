@@ -31,7 +31,36 @@ router.get('/pcgamer', (req, res) => {
 });
 
 router.get('/ign', (req, res) => {
-  res.redirect('/articles/ign');
+  axios.get('https://www.ign.com/articles?tags=news').then((response) => {
+    const $ = cheerio.load(response.data);
+    $('.inc-blogrollv2articles .listElmnt').each((i, element) => {
+      const result = {};
+      result.title = $(element).find('.listElmnt-storyHeadline').text();
+      result.link = $(element).find('.listElmnt-storyHeadline').attr('href');
+
+      // Get image URL from data-attribute if there is one, otherwise from src
+      if ($(element).find('.thumb img').data('original')) {
+        result.image = $(element).find('.thumb img').data('original');
+      } else {
+        result.image = $(element).find('.thumb img').attr('src');
+      }
+
+      // Select only the text directly inside of p tag
+      result.summary = $(element).find('p').clone().children()
+        .remove()
+        .end()
+        .text()
+        .trim();
+
+      result.source = 'IGN';
+      result.sourceLink = 'https://www.ign.com/';
+      console.log(result);
+      db.Article.create(result).catch((err) => {
+        console.log(err);
+      });
+    });
+    res.redirect('/articles/ign');
+  });
 });
 
 module.exports = router;

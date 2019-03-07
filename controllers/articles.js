@@ -16,11 +16,11 @@ router.get('/pcgamer', (req, res) => {
   });
 });
 router.get('/ign', (req, res) => {
-  res.render('articles');
-  // db.Article.find({ source: 'IGN' }).sort({ createdAt: -1 }).then((dbArticle) => {
-  //   console.log(dbArticle);
-  //   res.render('articles', { articles: dbArticle });
-  // });
+  // res.render('articles');
+  db.Article.find({ source: 'IGN' }).sort({ createdAt: -1 }).then((dbArticle) => {
+    console.log(dbArticle);
+    res.render('articles', { articles: dbArticle });
+  });
 });
 
 module.exports = router;
