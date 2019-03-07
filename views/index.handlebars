@@ -8,10 +8,11 @@
       <a class="nav-link" href="/saved">Saved Articles</a>
     </li>
     <li class="nav-item">
-      <button class="btn btn-primary">Scrape PC Gamer</button>
+      <a class="nav-link" href="/scrape/pcgamer">Scrape PC Gamer</a>
+      {{!-- <button class="btn btn-primary">Scrape PC Gamer</button> --}}
     </li>
     <li class="nav-item">
-      <button class="btn btn-primary">Clear Articles</button>
+      {{!-- <button class="btn btn-primary">Clear Articles</button> --}}
     </li>
   </ul>
 </nav>
@@ -19,5 +20,27 @@
   <h1>GameScrape</h1>
 </section>
 <section class="container-fluid article-container">
+  {{#if articles}}
+    {{#each articles}}
+      <article class="row">
+        <div class="col-md-4">
+          <a href="{{link}}" target="_blank">
+            <img class="img-responsive mw-100" src="{{image}}" alt="">
+          </a>
+        </div>
+        <div class="col-md-8">
+          <h6>
+            <a href="{{link}}" target="_blank">{{title}}</a>
+          </h6>
+          <p>{{summary}}</p>
+          <p><a href="{{sourceLink}}" target="_blank">{{source}}</a></p>
+        </div>
+      </article>
+    {{/each}}
+  {{else}}
+    <article>
+      <h2>No articles yet!</h2>
+    </article>
+  {{/if}}
 
 </section>

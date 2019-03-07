@@ -13,7 +13,8 @@ router.get('/pcgamer', (req, res) => {
       result.link = $(element).find('a').attr('href');
       result.image = $(element).find('img').attr('data-src');
       result.summary = $(element).find('.synopsis').text();
-      result.source = 'pcgamer';
+      result.source = 'PC Gamer';
+      result.sourceLink = 'https://www.pcgamer.com/';
       console.log(result);
       db.Article.create(result).then((dbArticle) => {
         console.log(dbArticle);
@@ -21,8 +22,8 @@ router.get('/pcgamer', (req, res) => {
         console.log(err);
       });
     });
+    res.redirect('/');
   });
-  res.redirect('/');
 });
 
 module.exports = router;

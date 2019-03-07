@@ -23,6 +23,14 @@ const ArticleSchema = new Schema({
     type: String,
     required: true,
   },
+  sourceLink: {
+    type: String,
+    required: true,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
   comments: [{
     type: Schema.Types.ObjectId,
     ref: 'Comment',
