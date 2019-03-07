@@ -1,46 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/">GameScrape</a>
-  <ul class="navbar-nav mr-auto">
-    <li class="nav-item">
-      <a class="nav-link" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/saved">Saved Articles</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" href="/scrape/pcgamer">Scrape PC Gamer</a>
-      {{!-- <button class="btn btn-primary">Scrape PC Gamer</button> --}}
-    </li>
-    <li class="nav-item">
-      {{!-- <button class="btn btn-primary">Clear Articles</button> --}}
-    </li>
-  </ul>
-</nav>
 <section class="jumbotron">
-  <h1>GameScrape</h1>
-</section>
-<section class="container article-container">
-  {{#if articles}}
-    {{#each articles}}
-      <article class="row py-3">
-        <div class="col-md-4">
-          <a href="{{link}}" target="_blank">
-            <img class="img-responsive mw-100" src="{{image}}" alt="">
-          </a>
-        </div>
-        <div class="col-md-8">
-          <h6>
-            <a href="{{link}}" target="_blank">{{title}}</a>
-          </h6>
-          <p>{{summary}}</p>
-          <p><a href="{{sourceLink}}" target="_blank">{{source}}</a></p>
-        </div>
-      </article>
-    {{/each}}
-  {{else}}
-    <article>
-      <h2>No articles yet!</h2>
-    </article>
-  {{/if}}
-
+  <div class="container">
+    <h1 class="text-center">GameScrape</h1>
+  </div>
 </section>

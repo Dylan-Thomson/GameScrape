@@ -26,8 +26,12 @@ router.get('/pcgamer', (req, res) => {
         console.log(err);
       });
     });
-    res.redirect('/');
+    res.redirect('/articles/pcgamer');
   });
+});
+
+router.get('/ign', (req, res) => {
+  res.redirect('/articles/ign');
 });
 
 module.exports = router;

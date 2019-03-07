@@ -6,10 +6,45 @@
 		<title>GameScrape</title>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-		<script src="https://code.jquery.com/jquery.js"></script>
+		<link rel="stylesheet" href="/assets/styles/styles.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 	</head>
 	<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <a class="navbar-brand" href="/">GameScrape</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="article-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Articles</a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="article-dropdown">
+              <a class="nav-link" href="/articles">All Articles</a>
+              <a class="nav-link" href="/articles/pcgamer">PC Gamer Articles</a>
+              <a class="nav-link" href="/articles/ign">IGN Articles</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="scrape-dropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#">Scrape</a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="scrape-dropdown">
+              <a class="nav-link" href="/scrape/pcgamer">PC Gamer</a>
+              <a class="nav-link" href="/scrape/ign">IGN</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/saved">Saved Articles</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
 		{{{ body }}}
+
+    <footer></footer>
 	</body>
 </html>
