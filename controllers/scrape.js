@@ -12,13 +12,17 @@ router.get('/pcgamer', (req, res) => {
       result.title = $(element).find('.article-name').text();
       result.link = $(element).find('a').attr('href');
       result.image = $(element).find('img').attr('data-src');
-      result.summary = $(element).find('.synopsis').text();
+
+      // Select only the text directly inside of .synopsis
+      result.summary = $(element).find('.synopsis').clone().children()
+        .remove()
+        .end()
+        .text();
+
       result.source = 'PC Gamer';
       result.sourceLink = 'https://www.pcgamer.com/';
       console.log(result);
-      db.Article.create(result).then((dbArticle) => {
-        console.log(dbArticle);
-      }).catch((err) => {
+      db.Article.create(result).catch((err) => {
         console.log(err);
       });
     });
