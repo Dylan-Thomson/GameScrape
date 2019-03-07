@@ -36,7 +36,8 @@ router.get('/ign', (req, res) => {
     $('.inc-blogrollv2articles .listElmnt').each((i, element) => {
       const result = {};
       result.title = $(element).find('.listElmnt-storyHeadline').text();
-      result.link = $(element).find('.listElmnt-storyHeadline').attr('href');
+      // Just get the first part of the URL before any ? are added to ensure unique article links
+      [result.link] = [$(element).find('.listElmnt-storyHeadline').attr('href').split('?')[0]];
 
       // Get image URL from data-attribute if there is one, otherwise from src
       if ($(element).find('.thumb img').data('original')) {
