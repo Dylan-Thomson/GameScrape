@@ -7,5 +7,10 @@ body {
 }
 
 .jumbotron {
-    height: 100%;
+    height: calc(100% - 30px);
+}
+
+footer {
+  height: 30px;
+  padding: 5px;
 }
