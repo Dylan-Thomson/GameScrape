@@ -1,8 +1,6 @@
 $(document).ready(() => {
   $('.view-comments').on('click', (event) => {
-    const articleID = $(event.currentTarget).data('id');
-    // alert($(event).currentTarget.data('id'));
-    // console.log(articleID);
+    const articleID = $(event.currentTarget).attr('data-id');
     $('#article-ID').text(articleID);
     $('#add-comment').attr('data-id', articleID);
     $('#article-comments').empty();
@@ -11,21 +9,20 @@ $(document).ready(() => {
       if (comments.length < 1) {
         $('#article-comments').append('No comments yet for this article');
       } else {
-        console.log(comments);
         comments.forEach((comment) => {
           $('#article-comments').append(`<article>${comment.body}</article>`);
         });
       }
-      console.log(data);
       $('#comment-modal').modal().show();
     });
   });
 
   $('#add-comment').on('click', (event) => {
     event.preventDefault();
-    const articleID = $(event.currentTarget).data('id');
+    const articleID = $(event.currentTarget).attr('data-id');
     const comment = { body: $('#comment-textarea').val() };
     $.post(`/api/articles/${articleID}/comments`, comment, (data) => {
+      // Append new comment, clear textarea
       console.log(data);
     });
   });
