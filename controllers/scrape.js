@@ -4,7 +4,8 @@ const cheerio = require('cheerio');
 const db = require('../models');
 
 const router = express.Router();
-router.get('/pcgamer', (req, res) => {
+
+const scrapePCGamer = (req, res) => {
   axios.get('https://www.pcgamer.com/news/').then((response) => {
     const $ = cheerio.load(response.data);
     $('.listingResult').each((i, element) => {
@@ -28,9 +29,9 @@ router.get('/pcgamer', (req, res) => {
     });
     res.redirect('/articles/pcgamer');
   });
-});
+};
 
-router.get('/ign', (req, res) => {
+const scrapeIGN = (req, res) => {
   axios.get('https://www.ign.com/articles?tags=news').then((response) => {
     const $ = cheerio.load(response.data);
     $('.inc-blogrollv2articles .listElmnt').each((i, element) => {
@@ -62,9 +63,9 @@ router.get('/ign', (req, res) => {
     });
     res.redirect('/articles/ign');
   });
-});
+};
 
-router.get('/gamespot', (req, res) => {
+const scrapeGameSpot = (req, res) => {
   axios.get('https://www.gamespot.com/news/').then((response) => {
     const $ = cheerio.load(response.data);
     $('.media-article').each((i, element) => {
@@ -82,6 +83,12 @@ router.get('/gamespot', (req, res) => {
     });
     res.redirect('/articles/gamespot');
   });
-});
+};
+
+router.get('/pcgamer', scrapePCGamer);
+
+router.get('/ign', scrapeIGN);
+
+router.get('/gamespot', scrapeGameSpot);
 
 module.exports = router;
