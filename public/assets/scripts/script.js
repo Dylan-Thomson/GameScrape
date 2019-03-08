@@ -7,11 +7,12 @@ $(document).ready(() => {
     $('#add-comment').attr('data-id', articleID);
     $('#article-comments').empty();
     $.getJSON(`/api/articles/${articleID}/comments`, (data) => {
-      if (data.length < 1) {
+      const { comments } = data[0];
+      if (comments.length < 1) {
         $('#article-comments').append('No comments yet for this article');
-      }
-      else {
-        data.forEach((comment) => {
+      } else {
+        console.log(comments);
+        comments.forEach((comment) => {
           $('#article-comments').append(`<article>${comment.body}</article>`);
         });
       }
