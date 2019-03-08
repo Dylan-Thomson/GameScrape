@@ -27,4 +27,12 @@ router.post('/', (req, res) => {
   });
 });
 
+router.delete('/:id', (req, res) => {
+  db.Comment.remove({ _id: req.params.id }).then((dbComment) => {
+    res.json(dbComment);
+  }).catch((err) => {
+    console.log(err);
+  });
+});
+
 module.exports = router;

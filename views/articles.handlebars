@@ -14,7 +14,7 @@
           <p>{{summary}}</p>
           <p><a href="{{sourceLink}}" target="_blank">{{source}}</a></p>
           <div>
-            <i class="far fa-lg fa-comments" data-id="{{_id}}"></i>
+            <i class="view-comments far fa-lg fa-comments" data-id="{{_id}}"></i>
           </div>
         </div>
       </article>
@@ -24,5 +24,27 @@
       <h2>No articles yet!</h2>
     </article>
   {{/if}}
-
 </section>
+
+<div class="modal fade" id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="comment-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="comment-title">Comments For Article: <span id="article-ID"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <section id="article-comments">
+
+        </section>
+        <textarea class="form-control my-2" id="comment-textarea" rows="10"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button id="add-comment" type="button" class="btn btn-primary">Add Comment</button>
+      </div>
+    </div>
+  </div>
+</div>
