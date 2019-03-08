@@ -8,6 +8,10 @@ body {
 
 .jumbotron {
     height: calc(100% - 30px);
+    background: url(../images/aleks-dorohovich-1089460-unsplash.jpg);
+    background-size: cover;
+    background-position: center;
+    border-radius: 0;
 }
 
 footer {
