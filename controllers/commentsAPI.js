@@ -21,12 +21,16 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/:articleID/comments', (req, res) => {
-  db.Comment.create(req.body).then(dbComment => db.Article.findOneAndUpdate(
-    { _id: req.params.articleID },
-    { $push: { comments: dbComment._id } },
-    { new: true },
-  )).then((dbArticle) => {
-    res.json(dbArticle);
+  let comment;
+  db.Comment.create(req.body).then((dbComment) => {
+    comment = dbComment;
+    return db.Article.findOneAndUpdate(
+      { _id: req.params.articleID },
+      { $push: { comments: dbComment._id } },
+      { new: true },
+    );
+  }).then(() => {
+    res.json(comment);
   }).catch((err) => {
     console.log(err);
   });

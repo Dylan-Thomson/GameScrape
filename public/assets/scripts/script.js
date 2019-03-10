@@ -7,14 +7,13 @@ $(document).ready(() => {
     $.getJSON(`/api/articles/${articleID}/comments`, (data) => {
       const { comments } = data[0];
       if (comments.length < 1) {
-        $('#article-comments').append('No comments yet for this article');
+        $('#article-comments').append('<h3>No comments yet for this article</h3>');
       } else {
         comments.forEach((comment) => {
           let { body } = comment;
           body = body.replace(/</g, '&lt;');
           body = body.replace(/>/g, '&gt;');
-          console.log(body);
-          $('#article-comments').append(`<article>${body}</article>`);
+          $('#article-comments').append(`<article class="my-2">${body}</article><hr>`);
         });
       }
       $('#comment-modal').modal().show();

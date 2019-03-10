@@ -47,6 +47,7 @@ require('./routes')(app);
 
 
 app.listen(PORT, () => {
+  /* eslint-disable no-console */
   console.log(
     '==> 🌎  Listening on port %s. Visit http://localhost:%s/ in your browser.',
     PORT,

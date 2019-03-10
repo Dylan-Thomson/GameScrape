@@ -22,7 +22,6 @@ const scrapePCGamer = (req, res) => {
 
       result.source = 'PC Gamer';
       result.sourceLink = 'https://www.pcgamer.com/';
-      console.log(result);
       db.Article.create(result).catch((err) => {
         console.log(err);
       });
