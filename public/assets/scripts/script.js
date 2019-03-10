@@ -1,3 +1,10 @@
+function appendComment(comment) {
+  let { body } = comment;
+  body = body.replace(/</g, '&lt;');
+  body = body.replace(/>/g, '&gt;');
+  $('#article-comments').append(`<article class="my-2">${body}</article><hr>`);
+}
+
 $(document).ready(() => {
   $('.view-comments').on('click', (event) => {
     const articleID = $(event.currentTarget).attr('data-id');
@@ -10,10 +17,7 @@ $(document).ready(() => {
         $('#article-comments').append('<h3>No comments yet for this article</h3>');
       } else {
         comments.forEach((comment) => {
-          let { body } = comment;
-          body = body.replace(/</g, '&lt;');
-          body = body.replace(/>/g, '&gt;');
-          $('#article-comments').append(`<article class="my-2">${body}</article><hr>`);
+          appendComment(comment);
         });
       }
       $('#comment-modal').modal().show();
@@ -26,7 +30,8 @@ $(document).ready(() => {
     const comment = { body: $('#comment-textarea').val() };
     $.post(`/api/articles/${articleID}/comments`, comment, (data) => {
       // Append new comment, clear textarea
-      console.log(data);
+      appendComment(data);
+      $('#comment-textarea').val('');
     });
   });
 });
