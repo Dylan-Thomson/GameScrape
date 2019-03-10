@@ -10,7 +10,11 @@ $(document).ready(() => {
         $('#article-comments').append('No comments yet for this article');
       } else {
         comments.forEach((comment) => {
-          $('#article-comments').append(`<article>${comment.body}</article>`);
+          let { body } = comment;
+          body = body.replace(/</g, '&lt;');
+          body = body.replace(/>/g, '&gt;');
+          console.log(body);
+          $('#article-comments').append(`<article>${body}</article>`);
         });
       }
       $('#comment-modal').modal().show();
