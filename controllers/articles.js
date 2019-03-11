@@ -11,10 +11,18 @@ router.get('/', (req, res) => {
 
 router.get('/page/:pageNum', (req, res) => {
   const perPage = 10;
-  const page = Math.max(0, req.param('pageNum'));
+  const page = Math.max(1, req.param('pageNum'));
   db.Article.find({}).limit(Number(perPage)).skip(perPage * page - perPage).sort({ createdAt: -1 })
     .then((dbArticle) => {
-      res.render('articles', { articles: dbArticle });
+      db.Article.count().then((count) => {
+        res.render('articles', {
+          articles: dbArticle,
+          prev: Number(page - 1),
+          page,
+          next: Number(page + 1),
+          pages: Math.ceil(count / perPage),
+        });
+      });
     });
 });
 

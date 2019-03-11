@@ -14,6 +14,17 @@ function appendComment(comment) {
   $('#article-comments').append(article);
 }
 
+function disablePageLinks() {
+  const prevPage = Number($('#prevPage').attr('data-page'));
+  const nextPage = Number($('#nextPage').attr('data-page'));
+  const pageCount = Number($('#pageCount').attr('data-pageCount'));
+  if (prevPage <= 0) {
+    $('#prevPage').addClass('d-none');
+  } else if (nextPage > pageCount) {
+    $('#nextPage').addClass('d-none');
+  }
+}
+
 $(document).on('click', '.delete-comment', (event) => {
   const commentID = $(event.currentTarget).attr('data-id');
   console.log(commentID);
@@ -29,6 +40,7 @@ $(document).on('click', '.delete-comment', (event) => {
 });
 
 $(document).ready(() => {
+  disablePageLinks();
   $('.view-comments').on('click', (event) => {
     const articleID = $(event.currentTarget).attr('data-id');
     $('#article-ID').text(articleID);

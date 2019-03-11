@@ -29,6 +29,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Handlebars
+// exphbs.registerHelper(math);
 app.engine(
   'handlebars',
   exphbs({

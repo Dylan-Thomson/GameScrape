@@ -19,12 +19,18 @@
         </div>
       </article>
     {{/each}}
+    <nav class="text-center">
+      <a class="mx-2" id="prevPage" href="{{prev}}" data-page='{{prev}}'><i class="fas fa-chevron-left"></i> Previous</a>
+      Page {{page}} of <span id="pageCount" data-pageCount='{{pages}}'>{{pages}}</span>
+      <a class="mx-2" id="nextPage" href="{{next}}" data-page='{{next}}'>Next <i class="fas fa-chevron-right"></i></a>
+    </nav>
   {{else}}
     <article>
       <h2>No articles yet!</h2>
     </article>
   {{/if}}
 </section>
+
 
 <div class="modal fade" id="comment-modal" tabindex="-1" role="dialog" aria-labelledby="comment-title" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
