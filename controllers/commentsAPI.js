@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
-router.get('/:articleID/comments', (req, res) => {
+router.get('/articles/:articleID/comments', (req, res) => {
   db.Article.find({ _id: req.params.articleID }).populate('comments').then((dbArticle) => {
     res.json(dbArticle);
   }).catch((err) => {
@@ -12,15 +12,15 @@ router.get('/:articleID/comments', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
-  db.Comment.find({ _id: req.params.id }).then((dbComment) => {
-    res.json(dbComment);
-  }).catch((err) => {
-    console.log(err);
-  });
-});
+// router.get('/:id', (req, res) => {
+//   db.Comment.find({ _id: req.params.id }).then((dbComment) => {
+//     res.json(dbComment);
+//   }).catch((err) => {
+//     console.log(err);
+//   });
+// });
 
-router.post('/:articleID/comments', (req, res) => {
+router.post('/articles/:articleID/comments', (req, res) => {
   let comment;
   db.Comment.create(req.body).then((dbComment) => {
     comment = dbComment;
@@ -36,8 +36,8 @@ router.post('/:articleID/comments', (req, res) => {
   });
 });
 
-router.delete('/:id', (req, res) => {
-  db.Comment.remove({ _id: req.params.id }).then((dbComment) => {
+router.delete('/comments/:commentID', (req, res) => {
+  db.Comment.deleteOne({ _id: req.params.commentID }).then((dbComment) => {
     res.json(dbComment);
   }).catch((err) => {
     console.log(err);
