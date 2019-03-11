@@ -28,7 +28,9 @@ const scrapePCGamer = (req, res) => {
     });
     res.redirect('/articles/pcgamer');
   }).catch((err) => {
+    console.log(res);
     console.log(err);
+    res.render('error', { error: err });
   });
 };
 
@@ -64,7 +66,9 @@ const scrapeIGN = (req, res) => {
     });
     res.redirect('/articles/ign');
   }).catch((err) => {
+    console.log(res);
     console.log(err);
+    res.render('error', { error: err });
   });
 };
 
