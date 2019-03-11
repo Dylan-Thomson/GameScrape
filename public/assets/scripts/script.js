@@ -46,8 +46,8 @@ $(document).ready(() => {
   $('.view-comments').on('click', (event) => {
     const articleID = $(event.currentTarget).attr('data-id');
     const articleTitle = $(event.currentTarget).parent().parent().find('.article-title').text();
-    console.log(articleTitle);
     $('#article-title').text(articleTitle);
+    $('#article-ID').text(articleID);
     $('#add-comment').attr('data-id', articleID);
     $('#article-comments').empty();
     $.getJSON(`/api/articles/${articleID}/comments`, (data) => {
