@@ -3,18 +3,17 @@ const express = require('express');
 const router = express.Router();
 const db = require('../models');
 
-router.get('/', (req, res) => {
-  db.Article.find({}).sort({ createdAt: -1 }).then((dbArticle) => {
-    res.render('articles', { articles: dbArticle });
-  });
-});
-
-router.get('/page/:pageNum', (req, res) => {
+function getPage(req, res, source) {
   const perPage = 10;
   const page = Math.max(1, req.param('pageNum'));
-  db.Article.find({}).limit(Number(perPage)).skip(perPage * page - perPage).sort({ createdAt: -1 })
+  const query = {};
+  if (source) {
+    query.source = source;
+  }
+  // eslint-disable-next-line max-len
+  db.Article.find(query).limit(Number(perPage)).skip(perPage * page - perPage).sort({ createdAt: -1 })
     .then((dbArticle) => {
-      db.Article.count().then((count) => {
+      db.Article.count(query).then((count) => {
         res.render('articles', {
           articles: dbArticle,
           prev: Number(page - 1),
@@ -24,22 +23,38 @@ router.get('/page/:pageNum', (req, res) => {
         });
       });
     });
+}
+
+router.get('/', (req, res) => {
+  res.redirect('/articles/page/1');
+});
+
+router.get('/page/:pageNum', (req, res) => {
+  getPage(req, res);
 });
 
 router.get('/pcgamer', (req, res) => {
-  db.Article.find({ source: 'PC Gamer' }).sort({ createdAt: -1 }).then((dbArticle) => {
-    res.render('articles', { articles: dbArticle });
-  });
+  res.redirect('/articles/pcgamer/page/1');
 });
+
+router.get('/pcgamer/page/:pageNum', (req, res) => {
+  getPage(req, res, 'PC Gamer');
+});
+
 router.get('/ign', (req, res) => {
-  db.Article.find({ source: 'IGN' }).sort({ createdAt: -1 }).then((dbArticle) => {
-    res.render('articles', { articles: dbArticle });
-  });
+  res.redirect('/articles/ign/page/1');
 });
+
+router.get('/ign/page/:pageNum', (req, res) => {
+  getPage(req, res, 'IGN');
+});
+
 router.get('/gamespot', (req, res) => {
-  db.Article.find({ source: 'GameSpot' }).sort({ createdAt: -1 }).then((dbArticle) => {
-    res.render('articles', { articles: dbArticle });
-  });
+  res.redirect('/articles/gamespot/page/1');
+});
+
+router.get('/gamespot/page/:pageNum', (req, res) => {
+  getPage(req, res, 'GameSpot');
 });
 
 module.exports = router;

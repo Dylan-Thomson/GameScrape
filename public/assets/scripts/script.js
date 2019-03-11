@@ -20,7 +20,8 @@ function disablePageLinks() {
   const pageCount = Number($('#pageCount').attr('data-pageCount'));
   if (prevPage <= 0) {
     $('#prevPage').addClass('d-none');
-  } else if (nextPage > pageCount) {
+  }
+  if (nextPage > pageCount) {
     $('#nextPage').addClass('d-none');
   }
 }
