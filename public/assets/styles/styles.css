@@ -26,3 +26,7 @@ footer {
 textarea {
   resize: none;
 }
+
+.view-comments:hover, .delete-comment:hover {
+  cursor: pointer;
+}

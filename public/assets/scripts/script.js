@@ -1,14 +1,15 @@
 /* eslint no-underscore-dangle: 0 */
 function appendComment(comment) {
   const article = $('<article>');
-  article.addClass('my-2');
+  article.addClass('mb-2');
 
   let { body } = comment;
   body = body.replace(/</g, '&lt;');
   body = body.replace(/>/g, '&gt;');
 
   article.append(body);
-  article.append(`<i class="fas fa-comment-slash fa-lg delete-comment float-right text-danger" data-id=${comment._id}></i>`);
+  article.append(`<i class="fas fa-times fa-lg delete-comment float-right text-danger" data-id=${comment._id}></i>`);
+  article.append('<hr>');
   article.attr('data-id', comment._id);
   article.addClass('comment');
   $('#article-comments').append(article);
@@ -45,7 +46,8 @@ $(document).ready(() => {
 
   $('.view-comments').on('click', (event) => {
     const articleID = $(event.currentTarget).attr('data-id');
-    const articleTitle = $(event.currentTarget).parent().parent().find('.article-title').text();
+    const articleTitle = $(event.currentTarget).parent().parent().find('.article-title')
+      .text();
     $('#article-title').text(articleTitle);
     $('#article-ID').text(articleID);
     $('#add-comment').attr('data-id', articleID);

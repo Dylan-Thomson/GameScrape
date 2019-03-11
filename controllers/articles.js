@@ -1,7 +1,8 @@
 const express = require('express');
+const moment = require('moment');
+const db = require('../models');
 
 const router = express.Router();
-const db = require('../models');
 
 function getPage(req, res, source) {
   const perPage = 10;
@@ -14,12 +15,17 @@ function getPage(req, res, source) {
   db.Article.find(query).limit(Number(perPage)).skip(perPage * page - perPage).sort({ createdAt: -1 })
     .then((dbArticle) => {
       db.Article.count(query).then((count) => {
+        dbArticle.forEach((article) => {
+          // eslint-disable-next-line no-param-reassign
+          article.timeElapsed = moment(article.createdAt, 'YYYY-MM-DD').fromNow();
+        });
         res.render('articles', {
           articles: dbArticle,
           prev: Number(page - 1),
           page,
           next: Number(page + 1),
           pages: Math.ceil(count / perPage),
+          source,
         });
       });
     });
