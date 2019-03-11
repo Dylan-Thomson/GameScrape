@@ -57,10 +57,4 @@ $(document).ready(() => {
       $('#comment-textarea').val('');
     });
   });
-
-  // $('.delete-comment').on('click', (event) => {
-  //   const commentID = $(event.currentTarget).attr('data-id');
-  //   console.log(commentID);
-  //   console.log('hi?');
-  // });
 });
