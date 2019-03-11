@@ -86,6 +86,7 @@ const scrapeGameSpot = (req, res) => {
     });
     res.redirect('/articles/gamespot');
   }).catch((err) => {
+    console.log(res);
     console.log(err);
     res.render('error', { error: err });
   });
