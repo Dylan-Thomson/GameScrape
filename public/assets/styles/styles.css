@@ -14,7 +14,7 @@ body {
     border-radius: 0;
 }
 
-.article-container {
+.article-container, .error-container {
   min-height: calc(100% - 30px);
 }
 
