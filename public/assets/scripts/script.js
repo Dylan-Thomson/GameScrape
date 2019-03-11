@@ -73,6 +73,7 @@ $(document).ready(() => {
       // Append new comment, clear textarea
       appendComment(data);
       $('#comment-textarea').val('');
+      $('#article-comments h3').remove();
     });
   });
 });
