@@ -21,7 +21,7 @@ app.use(logger('dev'));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    saveUnitialized: true,
+    saveUninitialized: true,
     resave: true,
   }),
 );
@@ -29,7 +29,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Handlebars
-// exphbs.registerHelper(math);
 app.engine(
   'handlebars',
   exphbs({
