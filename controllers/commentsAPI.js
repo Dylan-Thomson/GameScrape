@@ -5,7 +5,7 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/', (req, res) => {
-  db.Comment.find({}).then((dbComment) => {
+  db.Comment.find({}).populate('article').then((dbComment) => {
     res.json(dbComment);
   }).catch((err) => {
     console.log(err);

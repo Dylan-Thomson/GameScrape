@@ -7,6 +7,10 @@ const CommentSchema = new Schema({
     type: String,
     required: true,
   },
+  article: {
+    type: Schema.Types.ObjectId,
+    ref: 'Article',
+  },
 });
 
 const Comment = mongoose.model('Comment', CommentSchema);

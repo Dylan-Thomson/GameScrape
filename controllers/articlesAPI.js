@@ -5,7 +5,7 @@ const router = express.Router();
 const db = require('../models');
 
 router.get('/', (req, res) => {
-  db.Article.find({}).then((dbArticle) => {
+  db.Article.find({}).populate('comments').then((dbArticle) => {
     res.json(dbArticle);
   }).catch((err) => {
     console.log(err);
@@ -30,6 +30,7 @@ router.get('/:articleID/comments', (req, res) => {
 
 router.post('/:articleID/comments', (req, res) => {
   let comment;
+  req.body.article = req.params.articleID;
   db.Comment.create(req.body).then((dbComment) => {
     comment = dbComment;
     return db.Article.findOneAndUpdate(
