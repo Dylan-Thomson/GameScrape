@@ -73,7 +73,7 @@ const scrapeIGN = (req, res) => {
 };
 
 const scrapeGameSpot = (req, res) => {
-  axios.get('https://www.gamespot.com/news/', '').then((response) => {
+  axios.get('https://www.gamespot.com/news/', { headers: { 'X-Requested-With': 'XMLHttpRequest' } }).then((response) => {
     const $ = cheerio.load(response.data);
     $('.media-article').each((i, element) => {
       const result = {};
