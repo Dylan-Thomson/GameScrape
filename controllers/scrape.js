@@ -72,34 +72,34 @@ const scrapeIGN = (req, res) => {
   });
 };
 
-const scrapeGameSpot = (req, res) => {
-  axios.get('https://www.gamespot.com/news/', { headers: { 'X-Requested-With': 'XMLHttpRequest' }, xsrfCookieName: 'XSRF-TOKEN' }).then((response) => {
-    const $ = cheerio.load(response.data);
-    $('.media-article').each((i, element) => {
-      const result = {};
-      result.title = $(element).find('.media-title').text();
-      result.link = `https://www.gamespot.com${$(element).find('a').attr('href')}`;
-      result.image = $(element).find('img').attr('src');
-      result.summary = $(element).find('.media-deck').text().trim();
-      result.source = 'GameSpot';
-      result.sourceLink = 'https://www.gamespot.com/';
-      console.log(result);
-      db.Article.create(result).catch((err) => {
-        console.log(err);
-      });
-    });
-    res.redirect('/articles/gamespot');
-  }).catch((err) => {
-    console.log(res);
-    console.log(err);
-    res.render('error', { error: err });
-  });
-};
+// const scrapeGameSpot = (req, res) => {
+//   axios.get('https://www.gamespot.com/news/', { headers: { 'X-Requested-With': 'XMLHttpRequest' }, xsrfCookieName: 'XSRF-TOKEN' }).then((response) => {
+//     const $ = cheerio.load(response.data);
+//     $('.media-article').each((i, element) => {
+//       const result = {};
+//       result.title = $(element).find('.media-title').text();
+//       result.link = `https://www.gamespot.com${$(element).find('a').attr('href')}`;
+//       result.image = $(element).find('img').attr('src');
+//       result.summary = $(element).find('.media-deck').text().trim();
+//       result.source = 'GameSpot';
+//       result.sourceLink = 'https://www.gamespot.com/';
+//       console.log(result);
+//       db.Article.create(result).catch((err) => {
+//         console.log(err);
+//       });
+//     });
+//     res.redirect('/articles/gamespot');
+//   }).catch((err) => {
+//     console.log(res);
+//     console.log(err);
+//     res.render('error', { error: err });
+//   });
+// };
 
 router.get('/pcgamer', scrapePCGamer);
 
 router.get('/ign', scrapeIGN);
 
-router.get('/gamespot', scrapeGameSpot);
+// router.get('/gamespot', scrapeGameSpot);
 
 module.exports = router;

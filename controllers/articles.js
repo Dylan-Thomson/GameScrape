@@ -55,12 +55,12 @@ router.get('/ign/page/:pageNum', (req, res) => {
   getPage(req, res, 'IGN');
 });
 
-router.get('/gamespot', (req, res) => {
-  res.redirect('/articles/gamespot/page/1');
-});
+// router.get('/gamespot', (req, res) => {
+//   res.redirect('/articles/gamespot/page/1');
+// });
 
-router.get('/gamespot/page/:pageNum', (req, res) => {
-  getPage(req, res, 'GameSpot');
-});
+// router.get('/gamespot/page/:pageNum', (req, res) => {
+//   getPage(req, res, 'GameSpot');
+// });
 
 module.exports = router;
