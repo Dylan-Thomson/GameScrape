@@ -5,7 +5,7 @@
 
 ## Scrape Gaming News
 
-[Live Site](https://floating-scrubland-89374.herokuapp.com/)
+[Live Site](https://gamescrape.herokuapp.com/)
 
 GameScrape is a full stack web application where users can scrape news articles from gaming websites. It uses [axios](https://www.npmjs.com/package/axios) and [cheerio](https://www.npmjs.com/package/cheerio) to get HTML pages and extract data from them, including the article title, link, image, and summary. The data is saved to a [Mongo](https://www.mongodb.com/) database using [Mongoose](https://www.npmjs.com/package/mongoose), and avoids adding duplicate articles by ensuring that the article url is a unique value. 
 
